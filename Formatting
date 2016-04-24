@@ -1,0 +1,67 @@
+字体:
+	基本格式：
+		p {font-family: Arial, Helvetica, sans-serify;}
+		p {font-family: "Times New Roman", Times, serif;}
+	注意:
+	    1.不要只指定一种字体，因为如果用户电脑上没有安装你指定的这种格式就会使用浏览器默认的字体。
+            2. 这样指定多种字体，第一种字体找不到，就找下一个，使用第一个在用户电脑上找到的字体，如果一个都没找到，就用用户浏览器设置的默认字体。
+	    3. 如果字体名字有空格，就用引号括起来。
+	    4. Courier New字体在windows和mac基本都有。。
+	
+	Web Fonts
+	    浏览器会从网络上下载字体
+	    字体文件Font File Types
+	    EOT: 只有IE支持
+	    .ttf 和 .otf: 用的最广泛的2种，现在依然支持，但不是·所有浏览器都支持
+	    WOFF: 基于上面的压缩版本，用于网络，现代浏览器都支持
+	    SVG: 算不上字体，其实是图像，基本不受支持
+	    
+	    一般来说一个字体，应该提供3个版本：
+	    	a. 正常版本
+		b. 斜体(italic)版本
+		c. 粗体/斜体版本(bold/italic)
+	    使用：
+	    	font-face {
+			font-family: linzhixiou;  //定义一个名字，可以随便写
+			src: url('linzhixiou.ttf');  //字体文件所在的相对路径
+			font-weight: normal;      // 当用到这个字体的font-weight和font-style的时候，怎么显示的问题。
+			font-style: normal;
+		}
+
+		p {
+			font-family: linzhixiou;  //上面font-face用到的名字
+			
+		}
+
+字体颜色：
+	1. 十六进制: color: #6600FF;
+	2. rgb:	     color: rgb(100%,100%,100%);
+		     color: rgb(255,255,255);
+	3. rgba: 在rgb上面添加了一个a (opacity：代表不透明度)
+		     color: rgba(255, 100, 50, .5);
+
+	4. hsl:      color: hsl(0, 100%, 50%);
+	5. hsla:     color: hsla(0, 100%, 50%, .5);
+
+
+字体大小：
+	1. 像素 	p {font-size: 36px; }   //在各种设备和显示器上都一样大小
+	2. keyword	p {font-size: normal}   //xx-small, x-smal, small, medium, large, x-large, xx-large
+
+
+margin collapse:
+	两种情况，只会发生在普通文本流
+	a. 竖直相邻的元素之间，水平的不会（adjacent vertical block-level elements in the normal document flow）
+	b. 父子之间（Collapsing Margins Between Parent and Child Elements）
+
+	解决办法：
+	第一种其实没有什么办法
+	第二种：
+		1. 是在父元素加上border或者padding，border可以是透明的：border: 1px solid transparent
+		2. 更改文本流
+	资料: http://stackoverflow.com/questions/19718634/how-to-disable-margin-collapsing
+
+block box: 如div， p， ul， ol元素，create a break before and after it
+inline box: 如strong，a, img, em, 会和相近的元素保持在一行
+	    对于inline-box，padding和margin只对left和right有效，也就是说对于inline-box你不能通过padding和margin来增加他们的高度。
+	    如果，想要上下的margin和padding起作用，把该元素设置成为display: inline-block
